@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,8 +11,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'],['namespace'=>'Admin'])->group(function () {
+    Route::get('admin', 'Admin\AdminController@index')->name('admin.home');
 });
-Route::get('/emails/queue', ['uses'=>'MailController@index']);
+
+
+
+Route::get('/', 'SiteController@index')->name('home');
+
+Auth::routes();

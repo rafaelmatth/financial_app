@@ -14,11 +14,9 @@ class CreateBalancesTable extends Migration
     public function up()
     {
         Schema::create('balances', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            //Referencia a tabela de users users
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //Coluna que mostra o total(saldo final)
             $table->double('amount', 10, 2);
         });
     }
