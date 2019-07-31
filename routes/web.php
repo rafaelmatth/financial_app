@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth'],['namespace'=>'Admin'])->group(function () {
-    Route::get('admin', 'Admin\AdminController@index')->name('admin.home');
+
+
+
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
+    Route::get('balance', 'Admin\BalanceController@index')->name('admin.balance');
+    Route::get('/', 'Admin\AdminController@index')->name('admin.home');
 });
 
 
