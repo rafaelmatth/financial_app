@@ -14,13 +14,13 @@
     <p>Meu saldo</p>
     <div class="box">
         <div class="box-header">
-            <div class="btn btn-primary"><i class="fas fa-cart-plus"></i> Recarregar</div>
-            <div class="btn btn-danger"><i class="fas fa-cart-arrow-down"></i> Sacar</div>
+            <a href="{{ route('balance.deposit') }}" class="btn btn-primary"><b>+</b> Recarregar</a>
+            <div class="btn btn-danger"><b>↓</b> Sacar</div>
         </div>
         <div class="box-body">
                 <div class="small-box bg-green">
                         <div class="inner">
-                        <h3>R$ {{ $amount}}<sup style="font-size: 20px"></sup></h3>
+                        <h3>{{$final}}<sup style="font-size: 20px"></sup></h3>
                         </div>
                         <div class="icon">
                           <i class="ion ion-stats-bars"></i>

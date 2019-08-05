@@ -32,7 +32,7 @@ return [
 
     'logo' => '<b>Financial App</b>',
 
-    'logo_mini' => '<b>Financial App</b>',
+    'logo_mini' => '<b>FA</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -112,7 +112,7 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'admin',
-            'icon'        => 'dashborad',
+            'icon'        => 'dashboard',
         ],
         [
             'text'        => 'Financeiro',
