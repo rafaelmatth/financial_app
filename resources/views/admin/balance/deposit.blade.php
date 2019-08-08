@@ -12,6 +12,13 @@
             <h3>Fazer Recarga</h3>
         </div>
         <div class="box-body">
+        @if(isset($errors))
+            @foreach ($errors->all() as $error )
+            <div class="alert alert-warning">
+                <p>{{$error}}<p>
+            </div>
+            @endforeach
+        @endif
         <form method="POST" action="{{route('deposit.store')}}">
             {!! csrf_field() !!}
             <div class="form-group">
@@ -30,6 +37,14 @@
         input[type=number] { 
         -moz-appearance: textfield;
         appearance: textfield;
+        }
+        .btn-sucess{
+            background: green;
+            color: white;
+        }
+        .btn-sucess:hover{
+            background: green ;
+            color: white;
         }
     </style>
 @stop
