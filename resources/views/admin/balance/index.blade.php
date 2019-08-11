@@ -18,15 +18,16 @@
             <div class="btn btn-danger"><b>↓</b> Sacar</div>
         </div>
         <div class="box-body">
-                <div class="small-box bg-green">
-                        <div class="inner">
-                        <h3>{{$final}}<sup style="font-size: 20px"></sup></h3>
-                        </div>
-                        <div class="icon">
-                          <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Historico <i class="fa fa-arrow-circle-right"></i></a>
-                      </div>
+            @include('admin.includes.alerts')
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>{{$final}}<sup style="font-size: 20px"></sup></h3>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">Historico <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 @stop

@@ -25,7 +25,6 @@ class MoneyValidationFormRequest extends FormRequest
     {
         return [
             'valor' => 'required|numeric',
-        
         ];
     }
 }

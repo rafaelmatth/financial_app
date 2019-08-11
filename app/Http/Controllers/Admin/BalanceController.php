@@ -24,10 +24,10 @@ class BalanceController extends Controller
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->deposit($request->valor);
         
-        if($reponse['sucess'])
+        if($response['success'])
             return redirect()
                 ->route('admin.balance')
-                ->with('sucess', $response['message']);
+                ->with('success', $response['message']);
         return redirect()
             ->back()
             ->with('error', $response['message']);
