@@ -12,7 +12,7 @@ class BalanceController extends Controller
         $balance = auth()->user()->balance;
         $amount = $balance ? $balance->amount : 0;
         $final = "R$ " . $amount;
-        return view('admin.balance.index' , compact('final'));
+        return view('admin.balance.index' , compact('final', 'amount'));
     }
 
     public function deposit(){
@@ -23,6 +23,26 @@ class BalanceController extends Controller
         //$balance->deposit($request->valor);
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->deposit($request->valor);
+        
+        if($response['success'])
+            return redirect()
+                ->route('admin.balance')
+                ->with('success', $response['message']);
+        return redirect()
+            ->back()
+            ->with('error', $response['message']);
+        
+    }
+
+    public function withdrawn(){
+        return view('admin.balance.withdrawn');
+    }
+
+
+    public function withdrawnStore(MoneyValidationFormRequest $request, Balance $balance){
+        //$balance->deposit($request->valor);
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->withdrawn($request->valor);
         
         if($response['success'])
             return redirect()
