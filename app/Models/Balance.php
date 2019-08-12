@@ -45,9 +45,7 @@ class Balance extends Model
                 'messege'  => 'Saldo insufuciente',
             ];
         }
-        
-        
-        
+               
         DB::beginTransaction();
 
         $totalBefore = $this->amount ? $this->amount : 0;
