@@ -31,14 +31,12 @@ class BalanceController extends Controller
                 ->with('success', $response['message']);
         return redirect()
             ->back()
-            ->with('error', $response['message']);
-        
+            ->with('error', $response['message']);        
     }
 
     public function withdrawn(){
         return view('admin.balance.withdrawn');
     }
-
 
     public function withdrawnStore(MoneyValidationFormRequest $request, Balance $balance){
         //$balance->deposit($request->valor);
@@ -51,8 +49,7 @@ class BalanceController extends Controller
                 ->with('success', $response['message']);
         return redirect()
             ->back()
-            ->with('error', $response['message']);
-        
+            ->with('error', $response['message']);        
     }
 
     public function transfer(){
@@ -68,11 +65,31 @@ class BalanceController extends Controller
             return redirect()
                 ->back()
                 ->with('error','Não é possível tranferir para sua própria conta!');
-        return view('admin.balance.transfer-confirm', compact('sender'));
         
+        $balance = auth()->user()->balance;   
+                
+        return view('admin.balance.transfer-confirm', compact('sender', 'balance'));       
     }
 
-    public function transferStore(Request $request){
-        dd($request->all());
+    public function transferStore(MoneyValidationFormRequest $request, User $user){           
+        if(!$sender = $user->find($request->sender_id))
+            return redirect()
+                ->route('balance.transfer')
+                ->with('success', 'Recebedor não encontrado');
+
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->transfer($request->valor, $sender);
+        
+        if($response['success'])
+            return redirect()
+                ->route('admin.balance')
+                ->with('success', $response['message']);
+        
+        return redirect()
+            ->back()
+            ->with('error', $response['message']);
     }
 }
+
+
+

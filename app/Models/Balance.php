@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\User;
 class Balance extends Model
 {
     public $timestamps = false;
@@ -75,7 +76,58 @@ class Balance extends Model
         }
     }
 
+    public function transfer(float $valor, User $sender){
+        if($this->amount < $valor){
+            return [
+                'success' => 'false',
+                'messege'  => 'Saldo insufuciente',
+            ];
+        }
+               
+        DB::beginTransaction();
 
+        // Decremento de saldo do remetente
+        $totalBefore = $this->amount ? $this->amount : 0;
+        $this->amount -= number_format($valor, 2, '.', '');
+        $transfer = $this->save();
+
+        $historic = auth()->user()->historics()->create([
+            'type' => 'T',
+            'amount' => $valor,
+            'total_before' => $totalBefore,
+            'total_after' => $this->amount,
+            'date' => date('Ymd'),  
+            'user_id_transaction' => $sender->id,            
+        ]);
+
+        // Adicao de saldo do receptor 
+        $senderBalance = $sender->balance()->firstOrCreate([]);
+        $senderTotalBefore = $sender->amount ? $this->senderBalance : 0;
+        $senderBalance->amount += number_format($valor, 2, '.', '');
+        $transferSender = $senderBalance->save();
+
+        $historicSender = $sender->historics()->create([
+            'type' => 'I',
+            'amount' => $valor,
+            'total_before' => $senderTotalBefore,
+            'total_after' => $senderBalance->amount,
+            'date' => date('Ymd'),  
+            'user_id_transaction' => auth()->user()->id,            
+        ]); 
+
+        if($transfer && $historic && $transferSender && $historicSender){
+            DB::commit();
+            return [
+                'success' => 'true',
+                'message' => 'Sucesso ao transferir'
+            ];
+        }
+        DB::rollback();
+        return [
+        'success' => 'false',
+        'message' => 'Erro ao realizar tranferência.'
+        ];      
+    }
 
 
 }
