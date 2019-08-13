@@ -102,7 +102,7 @@ class Balance extends Model
 
         // Adicao de saldo do receptor 
         $senderBalance = $sender->balance()->firstOrCreate([]);
-        $senderTotalBefore = $sender->amount ? $this->senderBalance : 0;
+        $senderTotalBefore = $sender->amount ? $sender->amount : 0;
         $senderBalance->amount += number_format($valor, 2, '.', '');
         $transferSender = $senderBalance->save();
 
@@ -112,7 +112,7 @@ class Balance extends Model
             'total_before' => $senderTotalBefore,
             'total_after' => $senderBalance->amount,
             'date' => date('Ymd'),  
-            'user_id_transaction' => auth()->user()->id,            
+            'user_id_transaction' => auth()->user()->id,          
         ]); 
 
         if($transfer && $historic && $transferSender && $historicSender){
@@ -124,8 +124,8 @@ class Balance extends Model
         }
         DB::rollback();
         return [
-        'success' => 'false',
-        'message' => 'Erro ao realizar tranferência.'
+            'success' => 'false',
+            'message' => 'Erro ao realizar tranferência.'
         ];      
     }
 

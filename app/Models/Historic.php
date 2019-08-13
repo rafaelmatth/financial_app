@@ -11,7 +11,7 @@ class Historic extends Model
     'amount',
     'total_before',
     'total_after',
-    'user_id_transation',
+    'user_id_transaction',
     'date'
     ];
 }
