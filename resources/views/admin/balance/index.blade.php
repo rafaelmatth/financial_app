@@ -31,7 +31,7 @@
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">Historico <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('admin.historic')}}" class="small-box-footer">Historico <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
