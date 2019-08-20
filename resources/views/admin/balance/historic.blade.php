@@ -16,19 +16,25 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                <th>#</th>
                 <th>Valor</th>
                 <th>Tipo</th>
+                <th>Data</th>
                 <th>Seeder</th>
                 </tr>
             </thead>
             <tbody>
         @forelse($historic as $historics)
         <tr>
-            <td>{{$historics->id}}</td>
             <td>{{$historics->amount}}</td>
-            <td>{{$historics->type}}</td>
-            <td>{{$historics->user_id_transaction}}</td>
+            <td>{{$historics->type($historics->type)}}</td>
+            <td>{{$historics->date}}</td>
+            <td>
+                @if($historics->user_id_transaction)
+                  {{$historics->userSeender->name}}
+                @else
+                 - 
+                @endif
+            </td>
         </tr>
         @empty
         @endforelse

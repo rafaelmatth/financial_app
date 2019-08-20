@@ -90,7 +90,7 @@ class BalanceController extends Controller
             ->with('error', $response['message']);
     }
     public function historic(){
-        $historic = auth()->user()->historics()->get();
+        $historic = auth()->user()->historics()->with(['userSeender'])->get();
         return view('admin.balance.historic', compact('historic'));
     }
 }

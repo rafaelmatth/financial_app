@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \Carbon\Carbon;
+use \App\User;
 
 class Historic extends Model
 {
@@ -14,4 +16,27 @@ class Historic extends Model
     'user_id_transaction',
     'date'
     ];
+
+    public function type($type = null){
+        $types = [
+            'I' => 'Entrada',
+            'O' => 'Saída',
+            'T' => 'Transferência',
+        ];
+        if(!$types)
+            return $types;
+        if($this->user_id_transaction != null && $type = 'I')
+            return 'Recebido';
+        return $types[$type];        
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function userSeender(){
+        return $this->belongsTo(User::class, 'user_id_transaction');
+    }
+    public function getDateAttribute($value){
+        return Carbon::parse($value)->format('d/m/Y');
+    }
 }
