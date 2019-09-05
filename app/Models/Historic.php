@@ -33,7 +33,7 @@ class Historic extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function userSeender(){
+    public function userSender(){
         return $this->belongsTo(User::class, 'user_id_transaction');
     }
     public function getDateAttribute($value){

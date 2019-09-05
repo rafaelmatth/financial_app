@@ -35,7 +35,7 @@
             <td>{{$historics->date}}</td>
             <td>
                 @if($historics->user_id_transaction)
-                  {{$historics->userSeender->name}}
+                  {{$historics->userSender->name}}
                 @else
                  - 
                 @endif
