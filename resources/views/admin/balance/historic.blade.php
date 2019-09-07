@@ -54,7 +54,11 @@
             </tbody>
         </table>
         <div class="pagination">
-        {!! $historic->links()!!}
+            @if (isset($dataForm))
+                {!! $historic->appends($dataForm)->links()!!} 
+            @else
+                {!! $historic->links()!!}
+            @endif 
         </div>
     </div>
     </div>

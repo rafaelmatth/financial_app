@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
     Route::get('/', 'Admin\AdminController@index')->name('admin.home');
 
-    Route::get('/historic', 'Admin\BalanceController@historic')->name('admin.historic');
-    Route::post('/historic', 'Admin\BalanceController@searchHistoric')->name('historic.search');
+    Route::get('/historic-search', 'Admin\BalanceController@historic')->name('admin.historic');
+    Route::any('/historic', 'Admin\BalanceController@searchHistoric')->name('historic.search');
 
     Route::get('/balance', 'Admin\BalanceController@index')->name('admin.balance');
 

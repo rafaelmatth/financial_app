@@ -99,13 +99,13 @@ class BalanceController extends Controller
     }
 
     public function searchHistoric(Request $request, Historic $historics){
-        $dataForm = $request->all();
+        $dataForm = $request->except('_token');
 
         $historic = $historics->search($dataForm);
 
         $types = $historics->type();
 
-        return view('admin.balance.historic', compact('historic', 'types'));
+        return view('admin.balance.historic', compact('historic', 'types', 'dataForm'));
 
     }
 }
