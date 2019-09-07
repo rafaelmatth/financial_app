@@ -93,9 +93,20 @@ class BalanceController extends Controller
     public function historic(Historic $historics){
         $historic = auth()->user()->historics()->with(['userSender'])->paginate(10);
 
-        // $types = $historics->type();
+         $types = $historics->type();
         
-        return view('admin.balance.historic', compact('historic'));
+        return view('admin.balance.historic', compact('historic', 'types'));
+    }
+
+    public function searchHistoric(Request $request, Historic $historics){
+        $dataForm = $request->all();
+
+        $historic = $historics->search($dataForm);
+
+        $types = $historics->type();
+
+        return view('admin.balance.historic', compact('historic', 'types'));
+
     }
 }
 

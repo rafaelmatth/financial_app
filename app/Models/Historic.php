@@ -23,9 +23,9 @@ class Historic extends Model
             'O' => 'Saída',
             'T' => 'Transferência',
         ];
-        if(!$types)
+        if(!$type)
             return $types;
-        if($this->user_id_transaction != null && $type = 'I')
+        if($this->user_id_transaction != null && $type == 'I')
             return 'Recebido';
         return $types[$type];        
     }
@@ -33,10 +33,26 @@ class Historic extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
     public function userSender(){
         return $this->belongsTo(User::class, 'user_id_transaction');
     }
+
     public function getDateAttribute($value){
         return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function search(Array $data){
+        return $this->where(function ($query) use ($data){
+            if(isset($data['id'])){
+                $query->where('id', $data['id'] );
+            }
+            if(isset($data['date'])){
+                $query->where('date', $data['date'] );
+            }
+            if(isset($data['type'])){
+                $query->where('type', $data['type'] );
+            }
+        })->paginate(10);
     }
 }
