@@ -30,10 +30,12 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
 
     Route::get('/balance/transfer', 'Admin\BalanceController@transfer')->name('balance.transfer');
     Route::post('/balance/transfer/confirm', 'Admin\BalanceController@confirmTransfer')->name('confirm.transfer');     
-    Route::post('/balance/transfer/confirm/store', 'Admin\BalanceController@transferStore')->name('transfer.store');     
+    Route::post('/balance/transfer/confirm/store', 'Admin\BalanceController@transferStore')->name('transfer.store');   
+    
 });
 
 
+Route::get('profile', 'Admin\UserController@profile')->name('profile')->middleware('auth');
 Route::get('/', 'SiteController@index')->name('home');
 
 Auth::routes();

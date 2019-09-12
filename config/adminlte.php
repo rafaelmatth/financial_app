@@ -130,6 +130,11 @@ return [
                 ]
             ]
         ],
+        [
+            'text'        => 'Perfil',
+            'url'         => 'profile',
+            'icon'        => 'user',
+        ],
 
 
     ],
