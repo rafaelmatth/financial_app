@@ -12,23 +12,23 @@
             <h3>Dados</h3>
         </div>
         <div class="box-body">
-        <form method="POST" action="">
+        <form method="POST" action="{{ route("profileUpdate") }}">
             {!! csrf_field() !!}
             <div class="form-group">
                 <label>Nome</label>
-            <input type="text" class="form-control" name="" value="{{ auth()->user()->name }}"  placeholder="Nome">
+            <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}"  placeholder="Nome">
             </div>
             <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" class="form-control" name="" value="{{ auth()->user()->email }}"  placeholder="E-mail">
+                <input type="email" class="form-control" name="email" value="{{ auth()->user()->email }}"  placeholder="E-mail">
             </div>
             <div class="form-group">
                 <label>Senha</label>
-                <input type="password" class="form-control" name="" value="{{ auth()->user()->password }}"  placeholder="Senha">
+                <input type="password" class="form-control" name="password" value="{{ auth()->user()->password }}"  placeholder="Senha">
             </div>
             <div class="form-group">
                     <label>Imagem</label>
-                    <input type="file" class="form-control" name=""  value="{{ auth()->user()->image }}"  placeholder="Imagem">
+                    <input type="file" class="form-control" name="image"  value="{{ auth()->user()->image }}"  placeholder="Imagem">
                 </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-sucess">Alterar</button>

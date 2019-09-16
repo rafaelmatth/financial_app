@@ -38,4 +38,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
 Route::get('profile', 'Admin\UserController@profile')->name('profile')->middleware('auth');
 Route::get('/', 'SiteController@index')->name('home');
 
+Route::post('profile-update', 'Admin\UserController@profileUpdate')->name('profileUpdate')->middleware('auth');
+
+
 Auth::routes();
