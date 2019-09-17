@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label>Senha</label>
-                <input type="password" class="form-control" name="password" value="{{ auth()->user()->password }}"  placeholder="Senha">
+                <input type="password" class="form-control" name="password" value="{{auth()->user()->password}}"  placeholder="Senha">
             </div>
             <div class="form-group">
                     <label>Imagem</label>
