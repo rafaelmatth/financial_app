@@ -15,7 +15,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Seu saldo</span>
-            <span class="info-box-number">{{$saldo}}</span>
+            <span class="info-box-number">R$ {{$saldo}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
