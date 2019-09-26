@@ -59,4 +59,7 @@ class Historic extends Model
             }
         })->userAuth()->with(['userSender'])->paginate();
     }
+    public function date(){
+        return dd(auth()->user()->original);
+    }
 }

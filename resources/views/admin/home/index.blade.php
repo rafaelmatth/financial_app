@@ -27,8 +27,8 @@
             <span class="info-box-icon bg-red"></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">N de transções</span>
-            <span class="info-box-number">{{$nT}}</span>
+              <span class="info-box-text">Seu Id</span>
+            <span class="info-box-number">{{$userId}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -45,8 +45,8 @@
             </span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Sales</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-text">Nº de transacões</span>
+            <span class="info-box-number">{{$nT}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -58,8 +58,8 @@
             <span class="info-box-icon bg-yellow"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">New Members</span>
-              <span class="info-box-number">2,000</span>
+              <span class="info-box-text">Data</span>
+              <span class="info-box-number">{{$ultT}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
